@@ -6,6 +6,11 @@ body{
   backdrop-filter: blur(5px);
 }
 
+a.navbar-brand {
+  border-right: 1px solid white;
+  padding-right: 20px;
+}
+
 .pokemons{
   display: flex;
   align-items: center;
