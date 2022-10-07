@@ -1,6 +1,6 @@
 body{
   background-image: url(img/pokemon-background.jpg);
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
   height: 100vh;
   backdrop-filter: blur(5px);
