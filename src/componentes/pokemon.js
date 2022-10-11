@@ -12,7 +12,7 @@ function Poke() {
 
   const obtenPokemon = async () =>{
       const res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=9&offset=0");
-      await Promise.all (res.data.results.map( async (pokemon,index)=>{
+      await Promise.all (res.data.results.map( async (pokemon)=>{
         const pokeinfo = await obtenDatos(pokemon.url);
         pokemon.info = pokeinfo;
         return pokeinfo;
@@ -26,8 +26,7 @@ function Poke() {
   }
 
   return(
-    <div className='container container h-100 w-100'>
-    <div className="row align-items-center h-100 w-100 App">
+    <div className="row align-items-center h-100 w-100">
       <div className='d-flex justify-content-center flex-wrap'>
           {
               pokemons.map((pokemon,index)=>{
@@ -47,8 +46,6 @@ function Poke() {
       
           </div>
       </div>  
-    </div>
-    
   )
  
 }
