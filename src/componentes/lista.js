@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar} from '@mui/x-data-grid';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import imglive from '../img/icon-live.png'
 
 function Lista() {
 
@@ -10,6 +13,13 @@ function Lista() {
     useEffect( ()=> {
         obtenPokemon();
     },[])
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [pokeactual, setPokeactual] = useState({id:"", name:"", experiencia:"", imagen:"", url:""});
 
     const obtenPokemon = async () =>{
         const res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=0");
@@ -37,13 +47,26 @@ function Lista() {
                 )
             }
         },
-        { headerName: 'URL', width: 300,
+        { field: 'url', headerName: 'URL', width: 200,
             renderCell:(params)=>{
                 return (
                     <a href={params.row.url} className="btn-info" target="__blank">
                         Ver datos
-                    </a>
+                    </a>                
                    )
+            }
+        },
+        {
+            field:'modal', headerName: 'Modal', width:300,
+            renderCell:(params)=>{
+                return(
+                    <Button variant="primary" className="btn-live" onClick={()=>{
+                        setPokeactual(params.row);
+                        handleShow();
+                    }}>
+                        🔴 Data Live 
+                    </Button>
+                )
             }
         }
     ]
@@ -71,6 +94,23 @@ function Lista() {
                   }}
             />
             </Box>
+            <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">Datos</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {pokeactual.name}
+                    <input value={pokeactual.name} onChange={(event)=>{
+                        setPokeactual({...pokeactual,name:event.target.value})
+                    }}></input>                    
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="danger" onClick={handleClose}>
+                    Close
+                </Button>
+                <Button variant="success">Save</Button>
+                </Modal.Footer>
+            </Modal>           
         </div>
           
     )

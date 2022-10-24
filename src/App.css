@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
 body{
   background-image: url(img/pokemon-background.jpg);
   background-repeat: no-repeat;
@@ -62,7 +68,8 @@ a.navbar-brand {
 .btn-info{
   text-decoration: none;
   background-color: brown;
-  padding: 10px;
+  border: 1px solid brown;
+  padding: 9px 25px;
   color: white;
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -77,6 +84,21 @@ a.navbar-brand {
 }
 
 .btn-info:hover{
-  background-color:crimson;
-  color:white;
+  background-color: white;
+  color: brown;
+  border: 1px solid brown;
+}
+
+.btn-live{
+  transition: 0.5s ease !important;
+  -webkit-transition: 0.5s ease !important;
+  -moz-transition: 0.5s ease !important;
+  -ms-transition: 0.5s ease !important;
+  -o-transition: 0.5s ease !important;
+}
+
+.btn-live:hover{
+  background-color: white !important;
+  color: #0d6efd !important;
+  border-color: 1px solid #0d6efd !important;
 }
